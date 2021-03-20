@@ -1,0 +1,12 @@
+C:\Users\Epulapp\source\repos\ALGORITHME\bin\Debug\ALGORITHME.exe.config
+C:\Users\Epulapp\source\repos\ALGORITHME\bin\Debug\ALGORITHME.exe
+C:\Users\Epulapp\source\repos\ALGORITHME\bin\Debug\ALGORITHME.pdb
+C:\Users\Epulapp\source\repos\ALGORITHME\bin\Debug\MaterialSkin.dll
+C:\Users\Epulapp\source\repos\ALGORITHME\obj\Debug\ALGORITHME.csprojAssemblyReference.cache
+C:\Users\Epulapp\source\repos\ALGORITHME\obj\Debug\ALGORITHME.Home.resources
+C:\Users\Epulapp\source\repos\ALGORITHME\obj\Debug\ALGORITHME.Properties.Resources.resources
+C:\Users\Epulapp\source\repos\ALGORITHME\obj\Debug\ALGORITHME.csproj.GenerateResource.cache
+C:\Users\Epulapp\source\repos\ALGORITHME\obj\Debug\ALGORITHME.csproj.CoreCompileInputs.cache
+C:\Users\Epulapp\source\repos\ALGORITHME\obj\Debug\ALGORITHME.csproj.CopyComplete
+C:\Users\Epulapp\source\repos\ALGORITHME\obj\Debug\ALGORITHME.exe
+C:\Users\Epulapp\source\repos\ALGORITHME\obj\Debug\ALGORITHME.pdb
