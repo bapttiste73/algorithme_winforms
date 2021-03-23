@@ -33,14 +33,19 @@ namespace ALGORITHME
             this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.HomePage = new System.Windows.Forms.TabPage();
+            this.InstructionCrypt = new MaterialSkin.Controls.MaterialLabel();
             this.inputWordToCrypt = new System.Windows.Forms.TextBox();
             this.labelResultCrypt = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.labelResultDecrypt = new MaterialSkin.Controls.MaterialLabel();
+            this.InstructionDecrypt = new MaterialSkin.Controls.MaterialLabel();
+            this.inputWordToDecrypt = new System.Windows.Forms.TextBox();
             this.ClePage = new System.Windows.Forms.TabPage();
-            this.CleOutput = new MaterialSkin.Controls.MaterialLabel();
+            this.inputCle = new System.Windows.Forms.TextBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.tabControl1.SuspendLayout();
             this.HomePage.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.ClePage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +86,7 @@ namespace ALGORITHME
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.HomePage);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.ClePage);
             this.tabControl1.Location = new System.Drawing.Point(2, 66);
             this.tabControl1.Name = "tabControl1";
@@ -90,7 +96,7 @@ namespace ALGORITHME
             // 
             // HomePage
             // 
-            this.HomePage.Controls.Add(this.materialLabel3);
+            this.HomePage.Controls.Add(this.InstructionCrypt);
             this.HomePage.Controls.Add(this.inputWordToCrypt);
             this.HomePage.Controls.Add(this.labelResultCrypt);
             this.HomePage.Location = new System.Drawing.Point(4, 25);
@@ -98,16 +104,29 @@ namespace ALGORITHME
             this.HomePage.Padding = new System.Windows.Forms.Padding(3);
             this.HomePage.Size = new System.Drawing.Size(786, 351);
             this.HomePage.TabIndex = 0;
-            this.HomePage.Text = "Accueil";
+            this.HomePage.Text = "Cryptage";
             this.HomePage.UseVisualStyleBackColor = true;
+            // 
+            // InstructionCrypt
+            // 
+            this.InstructionCrypt.AutoSize = true;
+            this.InstructionCrypt.Depth = 0;
+            this.InstructionCrypt.Font = new System.Drawing.Font("Roboto", 11F);
+            this.InstructionCrypt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.InstructionCrypt.Location = new System.Drawing.Point(6, 63);
+            this.InstructionCrypt.MouseState = MaterialSkin.MouseState.HOVER;
+            this.InstructionCrypt.Name = "InstructionCrypt";
+            this.InstructionCrypt.Size = new System.Drawing.Size(202, 24);
+            this.InstructionCrypt.TabIndex = 2;
+            this.InstructionCrypt.Text = "Entrez votre message :";
             // 
             // inputWordToCrypt
             // 
-            this.inputWordToCrypt.Location = new System.Drawing.Point(242, 63);
+            this.inputWordToCrypt.Location = new System.Drawing.Point(232, 65);
             this.inputWordToCrypt.Name = "inputWordToCrypt";
             this.inputWordToCrypt.Size = new System.Drawing.Size(323, 22);
             this.inputWordToCrypt.TabIndex = 1;
-            this.inputWordToCrypt.TextChanged += new System.EventHandler(this.LaunchAlgo);
+            this.inputWordToCrypt.TextChanged += new System.EventHandler(this.LaunchAlgoCrypt);
             // 
             // labelResultCrypt
             // 
@@ -117,10 +136,55 @@ namespace ALGORITHME
             this.labelResultCrypt.Size = new System.Drawing.Size(0, 17);
             this.labelResultCrypt.TabIndex = 0;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.labelResultDecrypt);
+            this.tabPage1.Controls.Add(this.InstructionDecrypt);
+            this.tabPage1.Controls.Add(this.inputWordToDecrypt);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(786, 351);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Decryptage";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // labelResultDecrypt
+            // 
+            this.labelResultDecrypt.AutoSize = true;
+            this.labelResultDecrypt.Depth = 0;
+            this.labelResultDecrypt.Font = new System.Drawing.Font("Roboto", 11F);
+            this.labelResultDecrypt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelResultDecrypt.Location = new System.Drawing.Point(232, 161);
+            this.labelResultDecrypt.MouseState = MaterialSkin.MouseState.HOVER;
+            this.labelResultDecrypt.Name = "labelResultDecrypt";
+            this.labelResultDecrypt.Size = new System.Drawing.Size(0, 24);
+            this.labelResultDecrypt.TabIndex = 4;
+            // 
+            // InstructionDecrypt
+            // 
+            this.InstructionDecrypt.AutoSize = true;
+            this.InstructionDecrypt.Depth = 0;
+            this.InstructionDecrypt.Font = new System.Drawing.Font("Roboto", 11F);
+            this.InstructionDecrypt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.InstructionDecrypt.Location = new System.Drawing.Point(6, 63);
+            this.InstructionDecrypt.MouseState = MaterialSkin.MouseState.HOVER;
+            this.InstructionDecrypt.Name = "InstructionDecrypt";
+            this.InstructionDecrypt.Size = new System.Drawing.Size(202, 24);
+            this.InstructionDecrypt.TabIndex = 3;
+            this.InstructionDecrypt.Text = "Entrez votre message :";
+            // 
+            // inputWordToDecrypt
+            // 
+            this.inputWordToDecrypt.Location = new System.Drawing.Point(232, 65);
+            this.inputWordToDecrypt.Name = "inputWordToDecrypt";
+            this.inputWordToDecrypt.Size = new System.Drawing.Size(323, 22);
+            this.inputWordToDecrypt.TabIndex = 0;
+            this.inputWordToDecrypt.TextChanged += new System.EventHandler(this.LaunchAlgoDecrypt);
+            // 
             // ClePage
             // 
+            this.ClePage.Controls.Add(this.inputCle);
             this.ClePage.Controls.Add(this.materialLabel1);
-            this.ClePage.Controls.Add(this.CleOutput);
             this.ClePage.Location = new System.Drawing.Point(4, 25);
             this.ClePage.Name = "ClePage";
             this.ClePage.Padding = new System.Windows.Forms.Padding(3);
@@ -129,18 +193,14 @@ namespace ALGORITHME
             this.ClePage.Text = "Cle";
             this.ClePage.UseVisualStyleBackColor = true;
             // 
-            // CleOutput
+            // inputCle
             // 
-            this.CleOutput.AutoSize = true;
-            this.CleOutput.Depth = 0;
-            this.CleOutput.Font = new System.Drawing.Font("Roboto", 11F);
-            this.CleOutput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CleOutput.Location = new System.Drawing.Point(180, 31);
-            this.CleOutput.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CleOutput.Name = "CleOutput";
-            this.CleOutput.Size = new System.Drawing.Size(52, 24);
-            this.CleOutput.TabIndex = 0;
-            this.CleOutput.Text = "ISTIL";
+            this.inputCle.Location = new System.Drawing.Point(189, 33);
+            this.inputCle.Name = "inputCle";
+            this.inputCle.Size = new System.Drawing.Size(154, 22);
+            this.inputCle.TabIndex = 2;
+            this.inputCle.Text = "ISTIL";
+            this.inputCle.TextChanged += new System.EventHandler(this.changeKey);
             // 
             // materialLabel1
             // 
@@ -155,19 +215,6 @@ namespace ALGORITHME
             this.materialLabel1.TabIndex = 1;
             this.materialLabel1.Text = "Clé de cryptage :";
             // 
-            // materialLabel3
-            // 
-            this.materialLabel3.AutoSize = true;
-            this.materialLabel3.Depth = 0;
-            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(6, 63);
-            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(202, 24);
-            this.materialLabel3.TabIndex = 2;
-            this.materialLabel3.Text = "Entrez votre message :";
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -179,6 +226,8 @@ namespace ALGORITHME
             this.tabControl1.ResumeLayout(false);
             this.HomePage.ResumeLayout(false);
             this.HomePage.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ClePage.ResumeLayout(false);
             this.ClePage.PerformLayout();
             this.ResumeLayout(false);
@@ -193,9 +242,13 @@ namespace ALGORITHME
         private System.Windows.Forms.TabPage ClePage;
         private System.Windows.Forms.TextBox inputWordToCrypt;
         private System.Windows.Forms.Label labelResultCrypt;
-        private MaterialSkin.Controls.MaterialLabel CleOutput;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialLabel InstructionCrypt;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox inputWordToDecrypt;
+        private MaterialSkin.Controls.MaterialLabel labelResultDecrypt;
+        private MaterialSkin.Controls.MaterialLabel InstructionDecrypt;
+        private System.Windows.Forms.TextBox inputCle;
     }
 }
 

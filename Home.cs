@@ -17,7 +17,7 @@ namespace ALGORITHME
     public partial class Home : MaterialForm
     {
 
-        public const string CLE = "ISTIL";
+        public static string CLE = "ISTIL";
 
         public Home()
         {
@@ -94,7 +94,61 @@ namespace ALGORITHME
             return result;
         }
 
-        public string ConvertMsg(Dictionary<int, string> crypt)
+
+        public Dictionary<int, string> Decrypt(Dictionary<int, char> dicOrder, string phraseCrypt)
+        {
+            Dictionary<int, string> result = new Dictionary<int, string>();
+            foreach (KeyValuePair<int, char> kvp in dicOrder)
+            {
+                result.Add(kvp.Key, "");
+            }
+
+            int cleLength = dicOrder.Count();
+            char[] phraseCryptCharArray = phraseCrypt.ToCharArray();
+            int phraseLength = phraseCryptCharArray.Count();
+
+            // reste est le nombre d'@ à rajouter pour obtenir la ligne complète
+            int reste = phraseLength % cleLength;
+            int nbLignes;
+            if (reste == 0)
+            {
+                nbLignes = phraseLength / cleLength;
+            }
+            else
+            {
+                nbLignes = (phraseLength / cleLength) + 1;
+                //phraseLength = phraseCrypt.Length;
+            }            
+
+            int i = 0;
+            int j = 0;
+            int key = 0;
+            string temp = "";
+
+            while (i < phraseLength)
+            {
+                if(i == phraseLength-1)//On quitte la boucle
+                {
+                    temp += phraseCryptCharArray[i].ToString();
+                    result[key] = temp;
+                    return result;
+                }
+                if (j >= nbLignes)
+                {
+                    j = 0;
+                    result[key] = temp;
+                    key++;
+                    temp = "";
+                }
+                temp += phraseCryptCharArray[i].ToString();
+                j++;
+                i++;
+            }
+
+            return result;
+        }
+
+        public string ConvertMsgCryptToString(Dictionary<int, string> crypt)
         {
             string phrase = "";
 
@@ -105,12 +159,76 @@ namespace ALGORITHME
             return phrase;
         }
 
-        private void LaunchAlgo(object sender, EventArgs e)
+        public string ConvertMsgDecryptToString(Dictionary<int, string> crypt, int cleLength, int phraseLength)
+        {
+            //Calcul du nombre de ligne
+            int reste = phraseLength % cleLength;
+            int nbLignes;
+            if (reste == 0)
+            {
+                nbLignes = phraseLength / cleLength;
+            }
+            else
+            {
+                nbLignes = (phraseLength / cleLength) + 1;
+            }
+
+            string phrase = "";
+
+            Dictionary<int, char[]> dicTemp = new Dictionary<int, char[]>();
+
+            //On remplace les strings en char[]
+            foreach (KeyValuePair<int, string> kvp in crypt)
+            {
+                dicTemp[kvp.Key] = kvp.Value.ToCharArray();
+            }
+
+            for (int i = 0; i < nbLignes; i++)
+            {
+                foreach (KeyValuePair<int, char[]> kvp in dicTemp)
+                {
+                    if(kvp.Value.Count() > i )
+                        phrase += kvp.Value[i];
+                }
+            }
+
+            return phrase;
+        }
+
+        private void LaunchAlgoCrypt(object sender, EventArgs e)
         {
             string input = inputWordToCrypt.Text;
-            Dictionary<int, string> result =  Encrypt(OrderCle(CLE),input);
-            string output = ConvertMsg(result);
-            labelResultCrypt.Text = output;
+            if (CLE.Length > 0)
+            {
+                Dictionary<int, string> result = Encrypt(OrderCle(CLE), input);
+                string output = ConvertMsgCryptToString(result);
+                labelResultCrypt.Text = output;
+            } else
+            {
+                labelResultCrypt.Text = "VEUILLEZ SAISIR UNE CLE AU PREALABLE !";
+            }
+        }
+
+        private void LaunchAlgoDecrypt(object sender, EventArgs e)
+        {
+            if (CLE.Length > 0)
+            {
+                string input = inputWordToDecrypt.Text;
+                Dictionary<int, string> result = Decrypt(OrderCle(CLE), input);
+                string output = ConvertMsgDecryptToString(result, CLE.Length, input.Length);
+                labelResultDecrypt.Text = output;
+            }
+            else
+            {
+                labelResultDecrypt.Text = "VEUILLEZ SAISIR UNE CLE AU PREALABLE !";
+            }
+        }
+
+        private void changeKey(object sender, EventArgs e)
+        {
+            string input = inputCle.Text;
+            CLE = input;
+
         }
     }
 
